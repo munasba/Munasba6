@@ -658,13 +658,13 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
             child: Container(padding: const EdgeInsets.all(16), decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(12), border: Border.all(color: AppColors.divider)),
               child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 Text(DateFormat('yyyy/MM/dd', 'ar').format(_date), style: AppStyles.bodyLarge), const SizedBox(width: 12),
-                const Icon(Icons.calendar_today, color: AppColors.primary)]))))),
+                const Icon(Icons.calendar_today, color: AppColors.primary)])))),
           const SizedBox(width: 12),
           Expanded(child: GestureDetector(onTap: _pickTime,
             child: Container(padding: const EdgeInsets.all(16), decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(12), border: Border.all(color: AppColors.divider)),
               child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 Text(_time.format(context), style: AppStyles.bodyLarge), const SizedBox(width: 12),
-                const Icon(Icons.access_time, color: AppColors.primary)])))))]),
+                const Icon(Icons.access_time, color: AppColors.primary)]))))]),
         const SizedBox(height: 16),
         _field('ملاحظات (اختياري)', _notesCtrl, Icons.notes, 'ملاحظات اضافية...', maxLines: 3),
         const SizedBox(height: 32),
@@ -844,7 +844,7 @@ class _GuestsScreenState extends State<GuestsScreen> {
                   onSelected: (_) => setState(() => _cat = c)))).toList()))),
             Expanded(child: _guests.isEmpty ? Center(child: Text('لا يوجد مدعوون', style: AppStyles.bodyMedium))
               : ListView.builder(padding: const EdgeInsets.all(16), itemCount: _guests.length,
-                itemBuilder: (_, i) => _guestItem(_guests[i])))])),
+                itemBuilder: (_, i) => _guestItem(_guests[i])))]),
       floatingActionButton: _selectedEvent != null ? FloatingActionButton.extended(onPressed: _addGuest, icon: const Icon(Icons.add), label: const Text('اضافة مدعو')) : null);
   }
 
@@ -933,7 +933,7 @@ class _InvitationCardScreenState extends State<InvitationCardScreen> {
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Icon(Icons.local_florist, color: _getBorderColor(), size: 24),
             const SizedBox(width: 12), Icon(Icons.favorite, color: _getBorderColor(), size: 32), const SizedBox(width: 12),
-            Icon(Icons.local_florist, color: _getBorderColor(), size: 24)])),
+            Icon(Icons.local_florist, color: _getBorderColor(), size: 24)]),
           const SizedBox(height: 24),
           Text('نتشرف بدعوتكم لحضور', style: TextStyle(fontFamily: _font, fontSize: 16, color: AppColors.textSecondary)),
           const SizedBox(height: 12),
@@ -978,7 +978,7 @@ class _InvitationCardScreenState extends State<InvitationCardScreen> {
           child: Container(width: 80, height: 80, margin: const EdgeInsets.only(left: 12),
             decoration: BoxDecoration(color: _templates[i]['bg'] as Color, borderRadius: BorderRadius.circular(12),
               border: Border.all(color: _template == _templates[i]['id'] ? _templates[i]['border'] as Color : AppColors.divider, width: _template == _templates[i]['id'] ? 3 : 1)),
-            child: Center(child: Text(_templates[i]['name'] as String, textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: _templates[i]['border'] as Color)))))),
+            child: Center(child: Text(_templates[i]['name'] as String, textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: _templates[i]['border'] as Color))))))),
       const SizedBox(height: 20),
       Text('النص المخصص', style: AppStyles.titleLarge), const SizedBox(height: 8),
       TextField(textAlign: TextAlign.right, maxLines: 3, controller: TextEditingController(text: _text),
