@@ -25,20 +25,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/
-  fonts:
-    - family: Cairo
-      fonts:
-        - asset: assets/fonts/Cairo-Regular.ttf
-        - asset: assets/fonts/Cairo-Bold.ttf
-          weight: 700
-    - family: Amiri
-      fonts:
-        - asset: assets/fonts/Amiri-Regular.ttf
-    - family: Tajawal
-      fonts:
-        - asset: assets/fonts/Tajawal-Regular.ttf
-    - family: Almarai
-      fonts:
-        - asset: assets/fonts/Almarai-Regular.ttf
+  # NOTE: pubspec.yaml previously declared `assets/images/` and 4 custom Arabic
+  # font families (Cairo/Amiri/Tajawal/Almarai), but none of those files exist
+  # anywhere in the repo. That mismatch makes `flutter pub get` / `flutter build`
+  # fail immediately with a missing-asset error, which breaks the GitHub Actions
+  # build. The entries are removed here; the app now falls back to Flutter's
+  # default font. If you add the real .ttf files under assets/fonts/ and images
+  # under assets/images/ later, restore the `assets:`/`fonts:` blocks to match.

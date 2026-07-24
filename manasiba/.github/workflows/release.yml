@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
 
+env:
+  GRADLE_VERSION: "8.14.2"
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -32,6 +35,22 @@ jobs:
 
       - name: Get Dependencies
         run: flutter pub get
+
+      # The repo doesn't commit gradlew/gradlew.bat/gradle-wrapper.jar, so
+      # without this step `flutter build apk` fails immediately looking for
+      # android/gradlew. Same fix as in build_apk.yml.
+      - name: Install Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: ${{ env.GRADLE_VERSION }}
+
+      - name: Regenerate Gradle wrapper
+        working-directory: android
+        run: gradle wrapper --gradle-version ${{ env.GRADLE_VERSION }} --distribution-type all
+
+      - name: Make gradlew executable
+        working-directory: android
+        run: chmod +x gradlew
 
       - name: Build APK
         run: flutter build apk --release

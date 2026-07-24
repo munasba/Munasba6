@@ -9,13 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('ar', null);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -163,7 +165,7 @@ class _ManasibaAppState extends State<ManasibaApp> {
         body: Center(child: CircularProgressIndicator(color: AppColors.primary))));
     return MaterialApp(debugShowCheckedModeBanner: false, title: 'مناسبة',
       theme: ThemeData(fontFamily: 'Cairo', useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary, primary: AppColors.primary, background: AppColors.background),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary, primary: AppColors.primary, surface: AppColors.background),
         scaffoldBackgroundColor: AppColors.background,
         appBarTheme: const AppBarTheme(backgroundColor: AppColors.background, elevation: 0, centerTitle: true,
           iconTheme: IconThemeData(color: AppColors.textPrimary),
@@ -176,7 +178,7 @@ class _ManasibaAppState extends State<ManasibaApp> {
           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.divider)),
           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.primary, width: 1.5)),
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14)),
-        cardTheme: CardTheme(color: AppColors.cardBg, elevation: 0,
+        cardTheme: CardThemeData(color: AppColors.cardBg, elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)))),
       home: _done ? const MainScreen() : const OnboardingScreen());
   }
