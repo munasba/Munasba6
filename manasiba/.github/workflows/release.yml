@@ -1,14 +1,12 @@
-name: Build APK
+name: Create Release
 
 on:
   push:
-    branches: [ main, master, develop ]
-  pull_request:
-    branches: [ main, master ]
-  workflow_dispatch:
+    tags:
+      - 'v*'
 
 jobs:
-  build-android:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -29,26 +27,17 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Analyze code
-        run: flutter analyze
-
-      - name: Run tests
-        run: flutter test
-
       - name: Build APK
         run: flutter build apk --release
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: manasiba-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
 
       - name: Build AppBundle
         run: flutter build appbundle --release
 
-      - name: Upload AppBundle artifact
-        uses: actions/upload-artifact@v4
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: manasiba-aab
-          path: build/app/outputs/bundle/release/app-release.aab
+          files: |
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/bundle/release/app-release.aab
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
