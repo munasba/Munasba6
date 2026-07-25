@@ -1,34 +1,55 @@
-name: manasiba
-description: تطبيق إدارة المناسبات والدعوات
-
+name: munasaba
+description: "مناسبة - تطبيق تنظيم المناسبات والدعوات"
 publish_to: 'none'
-
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.2.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^2.2.2
-  image_picker: ^1.0.7
-  share_plus: ^7.2.2
-  path_provider: ^2.1.2
-  intl: ^0.19.0
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.6
+
+  # State management
+  provider: ^6.1.2
+
+  # Local storage
+  shared_preferences: ^2.2.3
+  path_provider: ^2.1.3
+
+  # Images
+  image_picker: ^1.1.2
+
+  # Contacts
+  flutter_contacts: ^1.1.9+2
+
+  # Sharing & screenshots (invitation card save/share)
+  share_plus: ^9.0.0
+  screenshot: ^3.0.0
+
+  # Permissions
+  permission_handler: ^11.3.1
+
+  # Dates / formatting (Arabic)
+  intl: ^0.19.0
+
+  # Fonts
+  google_fonts: ^6.2.1
+
+  # Unique ids
+  uuid: ^4.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.1
+  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
-  # NOTE: pubspec.yaml previously declared `assets/images/` and 4 custom Arabic
-  # font families (Cairo/Amiri/Tajawal/Almarai), but none of those files exist
-  # anywhere in the repo. That mismatch makes `flutter pub get` / `flutter build`
-  # fail immediately with a missing-asset error, which breaks the GitHub Actions
-  # build. The entries are removed here; the app now falls back to Flutter's
-  # default font. If you add the real .ttf files under assets/fonts/ and images
-  # under assets/images/ later, restore the `assets:`/`fonts:` blocks to match.
+  # عند إضافة صور افتراضية (avatar_male.png / avatar_female.png) ضعها في assets/images
+  # ثم أضف هنا:
+  # assets:
+  #   - assets/images/
