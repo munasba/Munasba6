@@ -6,6 +6,7 @@ import '../../providers/events_provider.dart';
 import '../../providers/guests_provider.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/countdown_timer.dart';
+import '../../models/event_model.dart';
 import '../guests/guests_screen.dart';
 import '../invitation/invitation_card_screen.dart';
 import 'create_event_screen.dart';
