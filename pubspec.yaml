@@ -68,8 +68,7 @@ flutter:
   uses-material-design: true
   generate: true # enables flutter gen-l10n from l10n.yaml automatically at build time
 
-  assets:
-    - assets/images/
+  
 
   # NOTE: Arabic typography (Cairo/Tajawal) is loaded at runtime via the
   # google_fonts package (see core/theme/app_theme.dart) instead of being
